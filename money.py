@@ -4,6 +4,7 @@
 class DifferentCurrencyError(Exception):
    
 class Currency:
+  
     """
     Represents a currency. Does not contain any exchange rate info.
     """
