@@ -2,7 +2,7 @@
 # import pdb; pdb.set_trace()
 
 class DifferentCurrencyError(Exception):
-   
+    pass   
 class Currency:
   
     """
@@ -21,26 +21,24 @@ class Currency:
         self.name = name
         self.code = code
         self.symbol = symbol
-        self.digital = digits
+        self.digits = digits
 
     def __str__(self):
-      if self.symbol:
-        return f"{self.code} ({self.symbol})"
-      else:
-        return f"{self.code}"  
+        if self.symbol:
+            return f"{self.code} ({self.symbol})"
+        else:
+            return f"{self.code}"  
 
         """
         Should return the currency code, or code with symbol in parentheses.
         """
-        
-      return f"{self.name} or {self.digital}"
-      return f"{self.symbol} or {self.code}"
-
+    def __eq__(self, other):  
+      
         """
         All fields must be equal to for the objects to be equal.
         """
 
-      return (type(self) == type(other) and self.name == other.name and 
+        return (type(self) == type(other) and self.name == other.name and 
         self.code == other.code and self.symbol == other.symbol and 
         self.digits == other.digits)
         
@@ -58,17 +56,14 @@ class Money:
         - currency -- type of currency
         """
 
-          self.amount = amount
-          self.currency = currency
-          self.money = []
-          for amount in amounts:
-            for currency in currencies:
-              self.money.append(Money(amount, currency))
-
+        self.amount = amount
+        self.currency = currency
+        
     def __str__(self):
           # breakpoint()
         if self.currency.symbol:  
-          return f"{self.currency.symbol} {self.amount:.m{self.currency.digits}f}"
+          # print(f"{self.currency.symbol}{self.amount:.{self.currency.digits}f}")
+          return f"{self.currency.symbol}{self.amount:.{self.currency.digits}f}"
         else:
           return f"{self.currency.code} {self.amount:.{self.currency.digits}f}"
       
@@ -79,39 +74,40 @@ class Money:
         
     def __repr__(self):
         return f"<Money {str(self)}>"
-        pass
+        
     def __eq__(self, other):
-      print("name __eq__ called")  
-        return self.value == other
-
         """
         All fields must be equal to for the objects to be equal.
         """
-        return (type(self) == type(other) and self.amount == other.amount and
-                self.currency == other.currency)
-        pass 
+        print("name __eq__ called")  
+        return self.amount == other.amount and self.currency == other.currency
+       
     def add(self, other):
         """
         Add two money objects of the same currency. If they have different
         currencies, raise a DifferentCurrencyError.
         """
-        pass
+        if self.currency = other.currency
+        total_amount = self.amount + other.amount
+        return Money(total_amount, currency=self.currency)
+      
 
     def sub(self, other):
         """
         Subtract two money objects of the same currency. If they have different
         currencies, raise a DifferentCurrencyError.
         """
-        pass
+        total_amount = self.amount - other.amount
+        return Money(total_amount, currency=self.currency)
 
     def mul(self, multiplier):
         """
         Multiply a money object by a number to get a new money object.
         """
-        pass
+        
 
     def div(self, divisor):
         """
         Divide a money object by a number to get a new money object.
         """
-        pass
+      
