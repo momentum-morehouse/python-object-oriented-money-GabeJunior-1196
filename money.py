@@ -87,9 +87,11 @@ class Money:
         Add two money objects of the same currency. If they have different
         currencies, raise a DifferentCurrencyError.
         """
-        if self.currency = other.currency
-        total_amount = self.amount + other.amount
-        return Money(total_amount, currency=self.currency)
+        if self.currency == other.currency:
+          total_amount = self.amount + other.amount
+          return Money(total_amount, currency=self.currency)
+        else: 
+          raise DifferentCurrencyError("this is the wrong currency")  
       
 
     def sub(self, other):
@@ -97,17 +99,24 @@ class Money:
         Subtract two money objects of the same currency. If they have different
         currencies, raise a DifferentCurrencyError.
         """
-        total_amount = self.amount - other.amount
-        return Money(total_amount, currency=self.currency)
-
+        if self.currency == other.currency:
+          total_amount = self.amount - other.amount
+          return Money(total_amount, currency=self.currency)
+        else:
+          raise DifferentCurrencyError("this is the wrong currency") 
+          
     def mul(self, multiplier):
-        """
-        Multiply a money object by a number to get a new money object.
-        """
+      # breakpoint()  
+        product = self.amount * multiplier
+        newMoney = Money(product, self.currency)
+        return newMoney
+        # if self.currency == other.currency:
         
+        # raise DifferentCurrencyError('Cannot multiply two Money ' + 'instances with different currencies.')
 
     def div(self, divisor):
-        """
-        Divide a money object by a number to get a new money object.
-        """
+
+        # """
+        # Divide a money object by a number to get a new money object.
+        # """
       
